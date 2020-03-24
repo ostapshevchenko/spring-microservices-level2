@@ -1,0 +1,18 @@
+server:
+  port: 9890
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      coreSize: 20
+      maximumSize: 500
+      allowMaximumSizeToDivergeFromCoreSize: true
+      maxQueueSize: 50000
+      queueSizeRejectionThreshold: 50000
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000
+

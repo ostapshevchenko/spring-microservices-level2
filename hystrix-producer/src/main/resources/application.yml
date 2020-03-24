@@ -1,0 +1,37 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /mongoDb
+spring:
+  application:
+    name: rest-producer
+  boot:
+    admin:
+      client:
+        url: http://localhost:2222
+        instance:
+          service-url:
+          management-url: http://rest-producer:9090/mongoDb
+          management-base-url: http://rest-producer:9090/mongoDb
+management:
+  server.port: 9090
+  endpoints:
+    web:
+      exposure.include: "*"
+      base-path: "/"
+  trace:
+    http:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    endpoints:
+      web:
+        exposure:
+          include: prometheus,info,metrics,threaddump,health
+  health:
+    redis:
+      enabled: false
+
+logging.level.pl.tmobile.idm.jar.service.IdmClient: off
